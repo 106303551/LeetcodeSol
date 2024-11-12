@@ -4,7 +4,9 @@ private:
     vector<int> path;
     int pathSum;
     void backtracking(int k ,int n ,int startIndex){
-        
+        if(pathSum>=n){
+            return;
+        }  
         //決定加入result時間點
         if(k-path.size() == 1){
             if(n-pathSum>=startIndex && n-pathSum<=9){
@@ -16,7 +18,7 @@ private:
         }
         //for迴圈 檢查有無可能出現解之可能
         
-        for(int i = startIndex;i<=9;i++){
+        for(int i = startIndex; i<=9 - (k-path.size())+1; i++){
             path.push_back(i);
             pathSum+=i;
             backtracking(k,n,i+1);
