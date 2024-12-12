@@ -2,30 +2,20 @@ class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
         int diff;
-        int total_gas;
-        //total gas >= total cost
-        if(accumulate(gas.begin(),gas.end(),0) < accumulate(cost.begin(),cost.end(),0)){
-            return -1;
-        }
-        //選擇start Pos
+        int total_gas = 0;
+        int cur_gas = 0;
+        int start = 0;
+
         for(int i =0;i<gas.size();i++){
-            total_gas = 0;
-            if(gas[i]<cost[i]){
-                continue;
-            }
-            for(int j = i;j<i+gas.size();j++){
-                int nowIndex = j%gas.size();
-                diff = gas[nowIndex]-cost[nowIndex];
-                total_gas+=diff;
-                if(total_gas<0){
-                    i = j;
-                    break;
-                }
-                if((nowIndex+1)%gas.size() == i){
-                    return i;
-                }
+            diff = gas[i]-cost[i];
+            total_gas+=diff;
+            cur_gas+=diff;
+            if(cur_gas<0){
+                start = i+1;
+                cur_gas = 0;
             }
         }
+        if(total_gas>=0)return start;
         return -1;
     }
 };
