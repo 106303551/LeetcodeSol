@@ -21,7 +21,7 @@ public:
                     i = j;
                     break;
                 }
-                if(nowIndex+1 == i){
+                if((nowIndex+1)%gas.size() == i){
                     return i;
                 }
             }
