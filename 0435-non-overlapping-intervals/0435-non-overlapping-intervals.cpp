@@ -22,10 +22,10 @@ public:
             }
             //下限與上限重疊
             if(intervals[i][1]>lowerbound){
-                if(intervals[i][0]>lowerbound){
-                    upperbound = intervals[i][1];
-                    lowerbound = intervals[i][0];
-                }
+                // if(intervals[i][0]>lowerbound){
+                //     upperbound = intervals[i][1];
+                //     lowerbound = intervals[i][0];
+                // }
                 result++;
                 continue;
             }
